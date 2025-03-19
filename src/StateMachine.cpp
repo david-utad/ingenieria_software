@@ -32,12 +32,45 @@ StateMachine::~StateMachine()
   m_vTransitions.clear();
 }
 
-StateMachine::EState StateMachine::GetCurrentState()
+StateMachine::EState StateMachine::GetCurrentState() const
 {
     return m_eCurrentState;
 }
 
-bool StateMachine::CanTransit(const char* _sInput)
+const char* StateMachine::GetCurrentStateString() const
+{
+  const char* sState = "INVALID";
+  switch (m_eCurrentState)
+  {
+    case StateMachine::STANDING:
+    {
+      sState = "STANDING";
+    }
+    break;
+    case StateMachine::DUCKING:
+    {
+      sState = "DUKING";
+    }
+    break;
+    case StateMachine::JUMPING:
+    {
+      sState = "JUMPING";
+    }
+    break;
+    case StateMachine::DIVING:
+    {
+      sState = "DIVING";
+    }
+    break;
+    default:
+    {
+      sState = "INVALID";
+    }
+  }
+  return sState;
+}
+
+bool StateMachine::CanTransit(const char* _sInput) const
 {
   bool bCanTransit = false;
   for (Transition transition : m_vTransitions)
@@ -45,9 +78,10 @@ bool StateMachine::CanTransit(const char* _sInput)
     if ((transition.eOrigin == m_eCurrentState) && (strcmp(transition.sCondition, _sInput) == 0))
     {
       bCanTransit = true;
+      break;
     }
   }
-  return true;
+  return bCanTransit;
 }
 
 void StateMachine::Transit(const char* _sInput)
@@ -57,6 +91,7 @@ void StateMachine::Transit(const char* _sInput)
     if ((transition.eOrigin == m_eCurrentState) && (strcmp(transition.sCondition, _sInput) == 0))
     {
       m_eCurrentState = transition.eDestiny;
+      break;
     }
   }
 }

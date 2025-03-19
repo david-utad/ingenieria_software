@@ -18,8 +18,9 @@ public:
   StateMachine();
   ~StateMachine();
 
-  StateMachine::EState GetCurrentState();
-  bool CanTransit(const char* _sInput);
+  StateMachine::EState GetCurrentState() const;
+  const char* GetCurrentStateString() const;
+  bool CanTransit(const char* _sInput) const;
   void Transit(const char* _sInput);
 
 private:

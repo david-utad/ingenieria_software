@@ -17,9 +17,9 @@ int main()
       {
         if (oStateMachine.CanTransit("A"))
         {
-          std::cout << "Can transit from : " << oStateMachine.GetCurrentState() << " with 'A' button\n";
+          std::cout << "Can transit from : " << oStateMachine.GetCurrentStateString() << " with 'A' button\n";
           oStateMachine.Transit("A");
-          std::cout << "New state : " << oStateMachine.GetCurrentState() << "\n";
+          std::cout << "New state : " << oStateMachine.GetCurrentStateString() << "\n";
         }
       }
 
@@ -27,9 +27,9 @@ int main()
       {
         if (oStateMachine.CanTransit("B"))
         {
-          std::cout << "Can transit from : " << oStateMachine.GetCurrentState() << " with 'B' button\n";
+          std::cout << "Can transit from : " << oStateMachine.GetCurrentStateString() << " with 'B' button\n";
           oStateMachine.Transit("B");
-          std::cout << "New state : " << oStateMachine.GetCurrentState() << "\n";
+          std::cout << "New state : " << oStateMachine.GetCurrentStateString() << "\n";
         }
       }
     }
