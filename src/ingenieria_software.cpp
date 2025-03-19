@@ -2,19 +2,35 @@
 //
 
 #include <iostream>
+#include "StateMachine.h"
+#include <windows.h>
+#define GetKey(X) (!!(GetAsyncKeyState(0[#X]) & 0x8000))
 
 int main()
 {
     std::cout << "Hello World!\n";
+    StateMachine oStateMachine;
+
+    while (true)
+    {
+      if (GetKey(A))
+      {
+        if (oStateMachine.CanTransit("A"))
+        {
+          std::cout << "Can transit from : " << oStateMachine.GetCurrentState() << " with 'A' button\n";
+          oStateMachine.Transit("A");
+          std::cout << "New state : " << oStateMachine.GetCurrentState() << "\n";
+        }
+      }
+
+      if (GetKey(B))
+      {
+        if (oStateMachine.CanTransit("B"))
+        {
+          std::cout << "Can transit from : " << oStateMachine.GetCurrentState() << " with 'B' button\n";
+          oStateMachine.Transit("B");
+          std::cout << "New state : " << oStateMachine.GetCurrentState() << "\n";
+        }
+      }
+    }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
